@@ -1,3 +1,9 @@
   rivi tekstiä
 toinen rivi tekstiä
+<<<<<<< HEAD
 vielä yksi rivi
+=======
+
+viela
+>>>>>>> toka
+jotain
