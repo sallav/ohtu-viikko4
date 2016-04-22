@@ -50,66 +50,47 @@ public class IntJoukko {
     }
 
     public boolean lisaa(int luku) {
-
-        int eiOle = 0;
         if (alkioidenLkm == 0) {
             ljono[0] = luku;
             alkioidenLkm++;
             return true;
-        } else {
         }
-        if (!kuuluu(luku)) {
+        else if(!onJoJoukossa(luku)) {
             ljono[alkioidenLkm] = luku;
             alkioidenLkm++;
             if (alkioidenLkm % ljono.length == 0) {
-                int[] taulukkoOld = new int[ljono.length];
-                taulukkoOld = ljono;
-                kopioiTaulukko(ljono, taulukkoOld);
+                int[] vanhataulukko = ljono;
+                kopioiTaulukko(ljono, vanhataulukko);
                 ljono = new int[alkioidenLkm + kasvatuskoko];
-                kopioiTaulukko(taulukkoOld, ljono);
+                kopioiTaulukko(vanhataulukko, ljono);
             }
             return true;
         }
         return false;
     }
 
-    public boolean kuuluu(int luku) {
-        int on = 0;
+    public boolean onJoJoukossa(int luku) {
+        boolean loytyy = false;
         for (int i = 0; i < alkioidenLkm; i++) {
             if (luku == ljono[i]) {
-                on++;
+                loytyy = true;
             }
         }
-        if (on > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return loytyy;
     }
 
     public boolean poista(int luku) {
-        int kohta = -1;
-        int apu;
-        for (int i = 0; i < alkioidenLkm; i++) {
-            if (luku == ljono[i]) {
-                kohta = i; //siis luku löytyy tuosta kohdasta :D
-                ljono[kohta] = 0;
-                break;
-            }
+        int i=0;
+        boolean poistettu = false;
+        while(i < alkioidenLkm) {
+            if(luku == ljono[i])    poistettu = true;
+            if (poistettu)  ljono[i] = ljono[i+1];
+            i++;
         }
-        if (kohta != -1) {
-            for (int j = kohta; j < alkioidenLkm - 1; j++) {
-                apu = ljono[j];
-                ljono[j] = ljono[j + 1];
-                ljono[j + 1] = apu;
-            }
-            alkioidenLkm--;
-            return true;
+        if(poistettu)   ljono[alkioidenLkm-1] = 0;
+        alkioidenLkm--;
+        return poistettu;
         }
-
-
-        return false;
-    }
 
     private void kopioiTaulukko(int[] vanha, int[] uusi) {
         for (int i = 0; i < vanha.length; i++) {
