@@ -31,15 +31,15 @@ public class IntJoukkoTest {
 
     @Test
     public void vainLisatytLuvutLoytyvat() {
-        assertTrue(joukko.onJoJoukossa(10));
-        assertFalse(joukko.onJoJoukossa(5));
-        assertTrue(joukko.onJoJoukossa(3));
+        assertTrue(joukko.onJoukossa(10));
+        assertFalse(joukko.onJoukossa(5));
+        assertTrue(joukko.onJoukossa(3));
     }
 
     @Test
     public void poistettuEiOleEnaaJoukossa() {
         joukko.poista(3);
-        assertFalse(joukko.onJoJoukossa(3));
+        assertFalse(joukko.onJoukossa(3));        
         assertEquals(1, joukko.mahtavuus());
     }
     
@@ -64,9 +64,9 @@ public class IntJoukkoTest {
             joukko.lisaa(luku);
         }
         assertEquals(14, joukko.mahtavuus());
-        assertTrue(joukko.onJoJoukossa(11));
+        assertTrue(joukko.onJoukossa(11));       
         joukko.poista(11);
-        assertFalse(joukko.onJoJoukossa(11));
+        assertFalse(joukko.onJoukossa(11));     
         assertEquals(13, joukko.mahtavuus());
     }
     
