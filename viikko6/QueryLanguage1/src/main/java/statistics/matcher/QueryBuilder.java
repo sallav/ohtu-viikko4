@@ -35,8 +35,8 @@ public class QueryBuilder {
         return this;
     }
     
-    public QueryBuilder Not(){
-        this.matcher = new Not(matcher);
+    public QueryBuilder Not(Matcher... matchers){
+        this.matcher = new Not(matchers);
         return this;
     }
     

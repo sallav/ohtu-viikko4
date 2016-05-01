@@ -24,5 +24,20 @@ public class Main {
         for (Player player : stats.matches(m3)) {
             System.out.println( player );
         }
+        
+        QueryBuilder query = new QueryBuilder();
+        
+        Matcher m4  = query.oneOf(new QueryBuilder().HasFewerThan(6, "goals").build(), new QueryBuilder().HasFewerThan(20, "assists").build()).playsIn("COL").build();
+        
+        System.out.println("....");
+        for (Player player : stats.matches(m4)){
+            System.out.println(player);
+        }
+        
+        Matcher m5 = query.Not(new QueryBuilder().playsIn("PHI").build()).playsIn("COL").HasAtLeast(4, "goals").build();
+        System.out.println("....");
+        for (Player player : stats.matches(m5)){
+            System.out.println(player);
+        }
     }
 }
